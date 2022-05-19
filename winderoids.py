@@ -70,10 +70,10 @@ while game_start:
     
     def show_start_screen ():
         screen.blit(background, background_rect)
-        draw_text(screen, "WElcome to Winderoids", 64, WIDTH / 2, HEIGHT / 4)
+        draw_text(screen, "Welcome to Winderoids", 64, WIDTH / 2, HEIGHT / 4)
         draw_text(screen, "Good luck have fun", 22,
                 WIDTH / 2, HEIGHT / 2)
-        draw_text(screen, "To strat press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
+        draw_text(screen, "To start press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
         pygame.display.flip()
         waiting = True
         while waiting:
@@ -87,6 +87,7 @@ while game_start:
 
 
     def show_go_screen():
+        print("show_go_screen")
         screen.blit(background, background_rect)
         draw_text(screen, "Winderoids", 64, WIDTH / 2, HEIGHT / 4)
         draw_text(screen, "Arrow keys move, Space to fire", 22,
@@ -103,15 +104,16 @@ while game_start:
                     waiting = False 
     
     def show_level_1 ():
+        print("show_level_1")
         screen.blit(background, background_rect)
         draw_text(screen, "Winderoids", 64, WIDTH / 2, HEIGHT / 4)
         draw_text(screen, "Level one ", 22,
                 WIDTH / 2, HEIGHT / 2)
-        draw_text(screen, "All asteroids coming from the top,", 22,
+        draw_text(screen, "All asteroids come from the top,", 22,
                 WIDTH / 2, HEIGHT / 2 + 30)
-        draw_text(screen, "you need kiil them and take 3000 score", 22,
+        draw_text(screen, "You need destroy them, and gain a score of 3000", 22,
                 WIDTH / 2, HEIGHT / 2 + 60)
-        draw_text(screen, "To strat press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
+        draw_text(screen, "To start press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
         pygame.display.flip()
         waiting = True
         while waiting:
@@ -320,7 +322,7 @@ while game_start:
             if self.rect.top > HEIGHT:
                 self.kill()
 
-    # class exsplosions
+    # class explosions
     class Explosion(pygame.sprite.Sprite):
         def __init__(self, center, size):
             pygame.sprite.Sprite.__init__(self)
@@ -374,7 +376,6 @@ while game_start:
     explosion_anim['player'] = []
     for i in range(9):
         filename = 'explosions/regularExplosion0{}.png'.format(i)
-        print(filename)
         img = pygame.image.load(path.join(img_dir, filename)).convert_alpha()
         img.set_colorkey(BLACK)
         img_lg = pygame.transform.scale(img, (75, 75))
@@ -408,8 +409,8 @@ while game_start:
     first_level_running = True
     show_start_screen()
     while first_level_running:
-        if show_level_1:
-            show_level_1()
+        
+       
         if game_over:
             show_go_screen()
             game_over = False
@@ -460,7 +461,7 @@ while game_start:
                 player.lives -= 1
                 player.shield = 100
             
-        # check colusion wirh powerUps
+        # check colusion with powerUps
         hits = pygame.sprite.spritecollide(player, powerups, True)
         for hit in hits:
             if hit.type == 'shield':
@@ -473,7 +474,7 @@ while game_start:
         # if player died game end
         if player.lives == 0 and not death_explosion.alive():
             game_over = True
-        elif score > 3000:
+        elif score > 100:
             for i in range(0):
                 newmob()
             first_level_running = False
