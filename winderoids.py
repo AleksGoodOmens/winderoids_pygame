@@ -406,8 +406,7 @@ while game_start:
 
 
     first_level_running = True
-    show_start
-    _screen()
+    show_start_screen()
     while first_level_running:
         if show_level_1:
             show_level_1()
