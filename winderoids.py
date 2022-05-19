@@ -24,6 +24,7 @@ while game_start:
     GREEN = (0, 255, 0)
     BLUE = (0, 0, 255)
     YELLOW = (255, 255, 0)
+    score = 0
 
     # game initialization =======================================================================
     pygame.init() 
