@@ -495,6 +495,8 @@ while game_start:
         all_sprites.draw(screen) #sprites drawing
         #last function for change screen
         pygame.display.flip()
+    
+    #level 2
     second_level_running = True
     while second_level_running:
         if game_over:
@@ -579,4 +581,3 @@ while game_start:
         pygame.display.flip()
 
 pygame.quit()
-jack = "Hi jack" 
