@@ -574,3 +574,4 @@ while game_start:
         pygame.display.flip()
 
 pygame.quit()
+jack = "Hi jack" 
