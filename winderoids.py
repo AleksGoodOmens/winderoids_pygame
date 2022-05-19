@@ -107,6 +107,11 @@ while game_start:
                 if event.type == pygame.KEYUP:
                     waiting = False 
     
+
+
+    
+
+    
     def show_level_1 ():
         print("show_level_1")
         screen.blit(background, background_rect)
@@ -119,6 +124,8 @@ while game_start:
                 WIDTH / 2, HEIGHT / 2 + 60)
         draw_text(screen, "To start press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
         pygame.display.flip()
+        # if score > 3000:
+        #     show_go_screen_level2
         waiting = True
         while waiting:
             clock.tick(FPS)
@@ -129,7 +136,70 @@ while game_start:
                 if pressed_keys[pygame.K_TAB]:
                     waiting = False
 
+    
+    def show_go_screen_level2():
+        print("show_go_screen")
+        screen.blit(background, background_rect)
+        draw_text(screen, "Winderoids", 64, WIDTH / 2, HEIGHT / 4)
+        draw_text(screen, "LEVEL 2", 22,
+                WIDTH / 2, HEIGHT / 2)
+        draw_text(screen, "Press a key to begin", 18, WIDTH / 2, HEIGHT * 3 / 4)
+        pygame.display.flip()
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            show_level_2()
+        waiting = True
+        while waiting:
+            clock.tick(FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.KEYUP:
+                    waiting = False 
 
+    def show_level_2 ():
+        print("show_level_1")
+        screen.blit(background, background_rect)
+        draw_text(screen, "Winderoids", 64, WIDTH / 2, HEIGHT / 4)
+        draw_text(screen, "Level one ", 22,
+                WIDTH / 2, HEIGHT / 2)
+        draw_text(screen, "All asteroids come from the top,", 22,
+                WIDTH / 2, HEIGHT / 2 + 30)
+        draw_text(screen, "You need destroy them, and gain a score of 3000", 22,
+                WIDTH / 2, HEIGHT / 2 + 60)
+        draw_text(screen, "To start press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
+        pygame.display.flip()
+        if score > 5000:
+            show_go_screen_level3
+        waiting = True
+        while waiting:
+            clock.tick(FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                pressed_keys = pygame.key.get_pressed()
+                if pressed_keys[pygame.K_TAB]:
+                    waiting = False
+
+    def show_go_screen_level3():
+        print("show_go_screen")
+        screen.blit(background, background_rect)
+        draw_text(screen, "Winderoids", 64, WIDTH / 2, HEIGHT / 4)
+        draw_text(screen, "LEVEL 2", 22,
+                WIDTH / 2, HEIGHT / 2)
+        draw_text(screen, "Press a key to begin", 18, WIDTH / 2, HEIGHT * 3 / 4)
+        pygame.display.flip()
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            show_level_2()
+        waiting = True
+        while waiting:
+            clock.tick(FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.KEYUP:
+                    waiting = False 
 
     class Player(pygame.sprite.Sprite):
         MANEUVERABILITY = 3 #
