@@ -124,8 +124,8 @@ while game_start:
                 WIDTH / 2, HEIGHT / 2 + 60)
         draw_text(screen, "To start press \"TAB\"", 18, WIDTH / 2, HEIGHT * 3 / 4)
         pygame.display.flip()
-        # if score > 3000:
-        #     show_go_screen_level2
+        if score > 3000:
+            show_go_screen_level2()
         waiting = True
         while waiting:
             clock.tick(FPS)
