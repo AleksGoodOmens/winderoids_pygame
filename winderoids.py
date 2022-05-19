@@ -69,6 +69,7 @@ while game_start:
         mobs.add(m)
     
     def show_start_screen ():
+        print(show_start_screen)
         screen.blit(background, background_rect)
         draw_text(screen, "Welcome to Winderoids", 64, WIDTH / 2, HEIGHT / 4)
         draw_text(screen, "Good luck have fun", 22,
@@ -94,6 +95,9 @@ while game_start:
                 WIDTH / 2, HEIGHT / 2)
         draw_text(screen, "Press a key to begin", 18, WIDTH / 2, HEIGHT * 3 / 4)
         pygame.display.flip()
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            show_level_1()
         waiting = True
         while waiting:
             clock.tick(FPS)
@@ -184,13 +188,13 @@ while game_start:
             self.rect.y += self.speedy
             if self.rect.right > WIDTH:
                 self.rect.right = WIDTH
-                print(self.rect.right)
+       
             if self.rect.left < 0:
                 self.rect.left = 0
-                print(self.rect.left)
+         
             if self.rect.top >= HEIGHT:
                 self.rect.top = HEIGHT
-                print(self.rect.top)
+          
             if self.rect.bottom <= 0:
                 self.rect.bottom = 0
                 
@@ -401,7 +405,7 @@ while game_start:
         expl_sounds.append(pygame.mixer.Sound(path.join(voice_dir, voice)))
 
     pygame.mixer.music.load(path.join(voice_dir, '1.mp3'))
-    pygame.mixer.music.set_volume(0.4 )
+    pygame.mixer.music.set_volume(0 )
     pygame.mixer.music.play(loops=-1) 
 
 
