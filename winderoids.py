@@ -13,8 +13,8 @@ while game_start:
     img_dir = path.join(path.dirname(__file__), 'img')
     voice_dir = path.join(path.dirname(__file__), 'voice')
     #game variables=============================================================================================
-    WIDTH = 650 # WIDTH OF GAME WINDOW
-    HEIGHT = 650 # HEIGHT OF GAME WINDOW
+    WIDTH = 1920 # WIDTH OF GAME WINDOW
+    HEIGHT = 1080 # HEIGHT OF GAME WINDOW
     FPS = 60 # UPDATES PER SECOND
     POWERUP_TIME = 50000 # working time for powerUps
     # colors (R, G, B)=============================================================================================
