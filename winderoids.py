@@ -125,6 +125,7 @@ def show_level_1 ():
                 pygame.quit()
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_TAB]:
+                pygame.mixer.music.stop()
                 waiting = False
 
 def show_level_2 ():
