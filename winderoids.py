@@ -1,3 +1,5 @@
+from pickle import FALSE
+from numpy import true_divide
 import pygame
 import random
 from os import path
@@ -27,8 +29,13 @@ screen = pygame.display.set_mode((WIDTH,HEIGHT)) # vareable with all screen size
 pygame.display.set_caption("Winderoids") # game window name
 clock = pygame.time.Clock() # variable for displaying FPS in game
 
+
 # text =====================================================================================
 font_name = pygame.font.match_font('monospace')
+
+
+
+
 
 def draw_text(surf, text, size, x, y):
     font = pygame.font.Font(font_name, size)
@@ -58,10 +65,11 @@ def draw_lives(surf, x, y, lives, img):
         surf.blit(img, img_rect)
 
 # Create new mobs
-def newmob():
-    m = Mob()
-    all_sprites.add(m)
-    mobs.add(m)
+def newmob(number = 0):
+    objs = [Mob() for i in range(number)]
+    for obj in objs:
+        all_sprites.add(obj)
+        mobs.add(obj)
 
 def show_start_screen ():
     print(show_start_screen)
@@ -80,6 +88,7 @@ def show_start_screen ():
             pressed_keys = pygame.key.get_pressed()
             if pressed_keys[pygame.K_TAB]:
                 waiting = False
+
 
 
 def show_go_screen():
@@ -452,11 +461,11 @@ class Explosion(pygame.sprite.Sprite):
 
 
 #graphics in the game
-background = pygame.image.load(path.join(img_dir, "Backgrounds\starbg.jpg")).convert()
-background2 = pygame.image.load(path.join(img_dir, "Backgrounds\starbg2.jpg")).convert()
-background3 = pygame.image.load(path.join(img_dir, "Backgrounds\starbg3.jpg")).convert()
-background4 = pygame.image.load(path.join(img_dir, "Backgrounds\starbg4.jpg")).convert()
-background5 = pygame.image.load(path.join(img_dir, "Backgrounds\starbg5.jpg")).convert()
+background = pygame.image.load(path.join(img_dir, "Backgrounds/starbg.jpg")).convert()
+background2 = pygame.image.load(path.join(img_dir, "Backgrounds/starbg2.jpg")).convert()
+background3 = pygame.image.load(path.join(img_dir, "Backgrounds/starbg3.jpg")).convert()
+background4 = pygame.image.load(path.join(img_dir, "Backgrounds/starbg4.jpg")).convert()
+background5 = pygame.image.load(path.join(img_dir, "Backgrounds/starbg5.jpg")).convert()
 background_rect = background.get_rect()
 background_rect2 = background2.get_rect()
 background_rect3 = background3.get_rect()
@@ -470,25 +479,25 @@ player_mini_img.set_colorkey(BLACK)
 bullet_img = pygame.image.load(path.join(img_dir, "PNG/Lasers/laserRed16.png")).convert_alpha()
 #mobs images
 meteor_images = []
-meteor_list = ['PNG\Meteors/1.png',
-                'PNG\Meteors/2.png',
-                'PNG\Meteors/3.png',
-                'PNG\Meteors/4.png',
-                'PNG\Meteors/5.png',
-                'PNG\Meteors/6.png',
-                'PNG\Meteors/7.png',
-                'PNG\Meteors/8.png',
-                'PNG\Meteors/9.png',
-                'PNG\Meteors/10.png',
-                'PNG\Meteors/11.png',
-                'PNG\Meteors/12.png',
-                'PNG\Meteors/13.png',
-                'PNG\Meteors/14.png',
-                'PNG\Meteors/15.png',
-                'PNG\Meteors/16.png',
-                'PNG\Meteors/17.png',
-                'PNG\Meteors/18.png',
-                'PNG\Meteors/19.png']
+meteor_list = ['PNG/Meteors/1.png',
+                'PNG/Meteors/2.png',
+                'PNG/Meteors/3.png',
+                'PNG/Meteors/4.png',
+                'PNG/Meteors/5.png',
+                'PNG/Meteors/6.png',
+                'PNG/Meteors/7.png',
+                'PNG/Meteors/8.png',
+                'PNG/Meteors/9.png',
+                'PNG/Meteors/10.png',
+                'PNG/Meteors/11.png',
+                'PNG/Meteors/12.png',
+                'PNG/Meteors/13.png',
+                'PNG/Meteors/14.png',
+                'PNG/Meteors/15.png',
+                'PNG/Meteors/16.png',
+                'PNG/Meteors/17.png',
+                'PNG/Meteors/18.png',
+                'PNG/Meteors/19.png']
 for folder in meteor_list:
     meteor_images.append(pygame.image.load(path.join(img_dir, folder)).convert())
 
@@ -529,52 +538,58 @@ pygame.mixer.music.play(loops=-1)
 
 global enemyAmount
 running = True
-level_2 = True
-level_3 = True
-level_4 = True
-level_5 = True
+
 show_start_screen()
+level_1 = False
+level_2 = False
+level_3 = False
+level_4 = False
+level_5 = False
+
+
 while running:
     if score <= 500:
         screen.blit(background, background_rect)
         draw_text(screen, "Level 1",24,WIDTH//2, HEIGHT - 44)
-        enemyAmount = 24
-
-    elif score <= 3000:
+        # enemyAmount = 3
+        hitLevel = 1
+    elif score >= 500 and score <= 1000:
+        level_1 = False
         while level_2:
-            show_level_2 ()
-            enemyAmount = 48
-            level_2 = False
-
+            show_level_2() 
+            level_2 = True
+            
+        # enemyAmount = 10
         screen.blit(background2, background_rect2)
         draw_text(screen, "Level 2",24,WIDTH//2, HEIGHT - 44)   
 
-    elif score <= 4500:
+    elif score >= 1000 and score <= 2000:
         while level_3:
+            hitLevel = 10
             show_level_3 ()
-            level_3 = False
+            level_3 = True
         screen.blit(background3, background_rect3)
         draw_text(screen, "Level 3",24,WIDTH//2, HEIGHT - 44)
-        enemyAmount = 60
+        enemyAmount = 20
 
-    elif score <= 5500:
+    elif score>= 2000 and score <= 3000:
         while level_4:
             show_level_4 ()
-            level_4 = False
+            level_4 = True
         screen.blit(background4, background_rect4)
         draw_text(screen, "Level 4",24,WIDTH//2, HEIGHT - 44)
-        enemyAmount = 72
+        enemyAmount = 30
 
     else:
         while level_5:
             show_level_5 ()
-            level_5 = False
+            level_5 = True
         screen.blit(background5, background_rect5)
-        enemyAmount = 84
+        enemyAmount = 40
         draw_text(screen, "Level 5",24,WIDTH//2, HEIGHT - 44)
 
     clock.tick(FPS)
-    print(enemyAmount)
+    # print(enemyAmount)
     if game_over:
         show_go_screen()
         game_over = False
@@ -584,11 +599,26 @@ while running:
         powerups = pygame.sprite.Group()
         player = Player()
         all_sprites.add(player)
-        for i in range(enemyAmount):
-            newmob()
-            print(enemyAmount)
+        
+ 
+        newmob(3)
+                
+        if level_2 == True:
+    
+            newmob(10)
+
+        if level_3 == True:
+            newmob(20)
+        
         score = 0
 
+        
+        
+        
+        
+        
+        
+        
         
     #game speed contro; 
     
@@ -615,7 +645,7 @@ while running:
             pow = Pow(hit.rect.center)
             all_sprites.add(pow)
             powerups.add(pow)
-        newmob()
+        newmob(2)
 
     #check if mob hit player
     hits = pygame.sprite.spritecollide(player, mobs, True, pygame.sprite.collide_circle)
@@ -623,7 +653,7 @@ while running:
         player.shield -= hit.radius * hit.speedy / 3
         expl = Explosion(hit.rect.center, 'sm')
         all_sprites.add(expl)
-        newmob()
+        newmob(2)
         if player.shield <= 0:
             death_explosion = Explosion(player.rect.center, 'player')
             all_sprites.add(death_explosion)
