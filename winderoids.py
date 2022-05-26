@@ -266,9 +266,10 @@ class Player(pygame.sprite.Sprite):
             self.power_time = pygame.time.get_ticks()
         # hide if not hide
         if self.hidden and pygame.time.get_ticks() - self.hide_timer > 2000:
+            self.shoot_delay = 250
             self.hidden = False
             self.rect.centerx = WIDTH / 2
-            self.rect.bottom = HEIGHT / 2
+            self.rect.centery = HEIGHT / 2
 
         self.speedx = 0
         self.speedy = 0
@@ -526,8 +527,7 @@ pygame.mixer.music.load(path.join(voice_dir, '1.mp3'))
 pygame.mixer.music.set_volume(0)
 pygame.mixer.music.play(loops=-1) 
 
-
-
+global enemyAmount
 running = True
 level_2 = True
 level_3 = True
@@ -535,7 +535,7 @@ level_4 = True
 level_5 = True
 show_start_screen()
 while running:
-    if score <= 1000:
+    if score <= 500:
         screen.blit(background, background_rect)
         draw_text(screen, "Level 1",24,WIDTH//2, HEIGHT - 44)
         enemyAmount = 24
@@ -543,10 +543,11 @@ while running:
     elif score <= 3000:
         while level_2:
             show_level_2 ()
+            enemyAmount = 48
             level_2 = False
+
         screen.blit(background2, background_rect2)
-        draw_text(screen, "Level 2",24,WIDTH//2, HEIGHT - 44)
-        enemyAmount = 48
+        draw_text(screen, "Level 2",24,WIDTH//2, HEIGHT - 44)   
 
     elif score <= 4500:
         while level_3:
