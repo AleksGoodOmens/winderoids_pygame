@@ -26,6 +26,9 @@ pygame.init()
 pygame.mixer.init() # voice in game
 screen = pygame.display.set_mode((WIDTH,HEIGHT), pygame.FULLSCREEN) # vareable with all screen sizes
 pygame.display.set_caption("Winderoids") # game window name
+
+icon = pygame.image.load(path.join(img_dir, "PNG/playerShip1_orange.png")).convert_alpha()
+pygame.display.set_icon(icon)
 clock = pygame.time.Clock() # variable for displaying FPS in game
 
 
@@ -315,7 +318,7 @@ player_img = pygame.image.load(path.join(img_dir, "PNG/playerShip1_orange.png"))
 player_mini_img = pygame.transform.scale(player_img, (25, 19))
 player_mini_img.set_colorkey(BLACK)
 #Bullet image
-bullet_img = pygame.image.load(path.join(img_dir, "PNG/Lasers/laserRed16.png")).convert_alpha()
+bullet_img = pygame.image.load(path.join(img_dir, "PNG/Lasers/Assetes-22.png")).convert_alpha()
 #mobs images
 meteor_images = []
 meteor_list = ['PNG/Meteors/1.png',
@@ -363,11 +366,11 @@ powerup_images['shield'] = pygame.image.load(path.join(img_dir, 'powerUp/shield_
 powerup_images['gun'] = pygame.image.load(path.join(img_dir, 'powerUp/bolt_gold.png')).convert_alpha()
 
 #music
-shoot_sound = pygame.mixer.Sound(path.join(voice_dir, 'sfx_laser1.ogg'))
+shoot_sound = pygame.mixer.Sound(path.join(voice_dir, 'sfx_laser1.mp3'))
 shield_sound = pygame.mixer.Sound(path.join(voice_dir, 'powerUp/sfx_shieldUp.ogg'))
 power_sound = pygame.mixer.Sound(path.join(voice_dir, 'powerUp/sfx_zap.ogg'))
 expl_sounds = []
-for voice in ['Explosion2.wav', 'Explosion5.wav']:
+for voice in ['Explosion2.mp3', 'Explosion5.mp3']:
     expl_sounds.append(pygame.mixer.Sound(path.join(voice_dir, voice)))
 
 pygame.mixer.music.load(path.join(voice_dir, '1.mp3'))
