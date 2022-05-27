@@ -654,6 +654,7 @@ level_3 = False
 level_4 = False
 level_5 = False
 
+song = True
 
 
 while running:
@@ -1231,7 +1232,6 @@ while running:
             pygame.mixer.music.load(path.join(voice_dir, 'victory/monsterkill.mp3'))
             pygame.mixer.music.set_volume(1)
             pygame.mixer.music.play(loops=1)
-             
         if score >= 20000:
             if song:
                 pygame.mixer.music.load(path.join(voice_dir, 'victory/1.mp3'))
