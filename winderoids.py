@@ -2,6 +2,8 @@
 import pygame
 import random
 from os import path
+from platform import python_version 
+print (python_version())
 
 game_over = True
 img_dir = path.join(path.dirname(__file__), 'img')
